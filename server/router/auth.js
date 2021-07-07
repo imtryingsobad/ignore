@@ -39,5 +39,31 @@ router.post('/register', async (req,res)=>{
 })
 
 
+router.post('/signin', async (req,res)=>{
+    try{
+        const {email,password} = req.body;
+
+        if(!email || !password){
+            return res.status(422).json({error:"One or more fields empty"});
+        }
+
+        const userLogin = await User.findOne({email:email})
+
+        if(userLogin){
+
+            //Here password validation is required!!!!
+
+            res.json({message:"User Signin Successfully"});
+        }else{
+            res.json({error:"User Error"});
+        }
+
+
+
+    }catch (err) {
+        console.log(err)
+    }
+})
+
 
 module.exports = router;
