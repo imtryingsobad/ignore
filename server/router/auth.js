@@ -21,6 +21,8 @@ router.post('/register', async (req,res)=>{
         if(userExist){return res.json({error:"Email already exists"})}
         const user = new User({name,email,phone,work,password, cpassword});
 
+
+
         try{
             const userSaved = await user.save()
 
