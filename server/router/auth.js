@@ -50,7 +50,7 @@ router.post('/signin', async (req,res)=>{
         const {email,password} = req.body;
 
         if(!email || !password){
-            return res.status(422).json({error:"One or more fields empty"});
+            return res.status(400).json({error:"One or more fields empty"});
         }
 
         const userLogin = await User.findOne({email:email})
@@ -67,13 +67,13 @@ router.post('/signin', async (req,res)=>{
             })
 
             if(!isMatch){
-                res.json({error:"User Error"});
+                res.status(400).json({error:"User Error"});
             }else{
                 res.json({message:"User SignIn Successful"});
             }
 
         }else{
-            res.json({error:"User Error"});
+            res.status(400).json({error:"User Error"});
         }
 
 
