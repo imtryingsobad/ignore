@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcrypt');
 
 require('../db/conn');
 const User = require('../model/userSchema');
@@ -51,11 +52,16 @@ router.post('/signin', async (req,res)=>{
 
         const userLogin = await User.findOne({email:email})
 
-        if(userLogin){
 
-            //Here password validation is required!!!!
+        if(userLogin ){
+            const isMatch = await bcrypt.compare(password, userLogin.password);
 
-            res.json({message:"User Signin Successfully"});
+            if(!isMatch){
+                res.json({error:"User Error"});
+            }else{
+                res.json({message:"User SignIn Successful"});
+            }
+
         }else{
             res.json({error:"User Error"});
         }
