@@ -16,7 +16,9 @@ router.post('/register', async (req,res)=>{
 
     if(!name||!email||!phone||!work||!password||!cpassword){
         return res.status(422).json({error:"One or more fields empty"});
-    }
+    }else if(password!=cpassword){
+        return res.status(422).json({error:"Passwords no matching"});
+    }else{
 
     try{
         const userExist = await User.findOne({email:email});
@@ -38,7 +40,7 @@ router.post('/register', async (req,res)=>{
 
     }catch(err){
         console.log(err)
-    }
+    }}
 
 })
 
