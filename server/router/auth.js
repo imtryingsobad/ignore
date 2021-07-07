@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 
+
 require('../db/conn');
 const User = require('../model/userSchema');
 
@@ -55,6 +56,13 @@ router.post('/signin', async (req,res)=>{
 
         if(userLogin ){
             const isMatch = await bcrypt.compare(password, userLogin.password);
+            const token = await userLogin.generateAuthToken();
+
+
+            res.cookie('jwt',token,{
+                expires: new Date(Date.now() + 25892000000),
+                httpOnly:true
+            })
 
             if(!isMatch){
                 res.json({error:"User Error"});
