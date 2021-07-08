@@ -16,22 +16,23 @@ function App() {
   const toggle = () => {
     setIsOpen(!isOpen);
   };  
-  const [darkMode,setDarkMode] = useState("true");
+
+    const [darkMode,setDarkMode] = useState(true);
   
     const theme = createTheme({
         palette: {
             type: darkMode ? 'dark' : 'light',
-          primary: {
+            primary: {
             main: "#FF9FB6",
             light: "#fff",
             dark: "#000" 
-          },
+            },
         },
-      });
+    });
 
-  return (
-      <ThemeProvider theme={theme}>
-      <Fragment>
+    return (
+        <ThemeProvider theme={theme}>
+        <Fragment>
           <Sidebar isOpen={isOpen} toggle={toggle} />
           <Navbar toggle={toggle} />
           <Switch>
@@ -39,14 +40,14 @@ function App() {
               <Route path="/about" ><AboutUs/></Route>
               <Route path="/contact" ><Contact/></Route>
               <Route path="/login" ><Login theme={darkMode}/></Route>
-              <Route path="/signup" ><SignUp/></Route>
+              <Route path="/signup" ><SignUp theme={darkMode}/></Route>
               <Route><ErrorPage/></Route>
           </Switch>
         <Button onClick ={()=> setDarkMode(!darkMode)}>
             <Brightness4Icon style={{position: 'fixed', bottom: '15px', right: '15px'}} />
         </Button>
-      </Fragment>
-      </ThemeProvider>
+        </Fragment>
+        </ThemeProvider>
   );
 }
 

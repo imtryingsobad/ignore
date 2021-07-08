@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp({darkMode}) {
+export default function SignUp({theme}) {
   const classes = useStyles();
 
   const history = useHistory();
@@ -103,8 +103,7 @@ export default function SignUp({darkMode}) {
       <CssBaseline />
       <div className={classes.paper}>      
 
-      {darkMode && <Avatar  variant="square" className={classes.avatar} src={ GIF} />}
-      {!darkMode && <Avatar  variant="square" className={classes.avatar} src={ GIFwhite} />}
+      <Avatar  variant="square" className={classes.avatar} src={ theme ? GIF : GIFwhite} />
 
         <form className={classes.form} noValidate method="POST" onSubmit={PostData}  >
           <Grid container spacing={2}>
