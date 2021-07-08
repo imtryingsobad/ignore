@@ -12,9 +12,10 @@ app.use(cookieParser());
 app.use(require('morgan')('dev'))
 
 //Linking router files
-app.use(require('./router/user'));
+app.use('/user', require('./router/user'));
+app.use('/admin', require('./router/admin'));
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 
 
 
