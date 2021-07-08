@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Login = ({darkMode}) => {
+const Login = ({theme}) => {
   const classes = useStyles();
 
   const history = useHistory();
@@ -61,7 +61,7 @@ const Login = ({darkMode}) => {
               email,password
           })
       });
-      
+
       const data =await res.json();
 
       if(res.status===400 || !data){
@@ -80,8 +80,8 @@ const Login = ({darkMode}) => {
       <CssBaseline />
       <div className={classes.paper}>
 
-      {console.log(darkMode)}
-      <Avatar  variant="square" className={classes.avatar} src={ darkMode ? GIF : GIFwhite} />
+      {console.log(theme)}
+      <Avatar  variant="square" className={classes.avatar} src={ theme ? GIF : GIFwhite} />
 
         <Typography variant="h6">
           Hey! Welcome Back!
