@@ -85,8 +85,9 @@ export default function SignUp({theme}) {
         });
 
         const data =await res.json();
+        console.log(data);
 
-        if(data.status===422 || !data){
+        if(res.status===422 || !data){
             window.alert("Invalid Registration");
             console.log("Invalid Registration");
         }else{
@@ -99,6 +100,7 @@ export default function SignUp({theme}) {
 
 
   return (
+      <Fragment>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>      
@@ -141,11 +143,24 @@ export default function SignUp({theme}) {
                 id="email"
                 label="Email Address"
                 name="email"
-                autoComplete="email"
+                autoComplete="off"
                 onChange={handleInputs}
                 value = {user.email}
               />
             </Grid>
+              <Grid item xs={12}>
+                  <TextField
+                      variant="outlined"
+                      required
+                      fullWidth
+                      id="phone"
+                      label="Phone Number"
+                      name="phone"
+                      autoComplete="off"
+                      onChange={handleInputs}
+                      value = {user.phone}
+                  />
+              </Grid>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -155,7 +170,7 @@ export default function SignUp({theme}) {
                 label="Password"
                 type="password"
                 id="password"
-                autoComplete="current-password"
+                autoComplete="off"
                 onChange={handleInputs}
                 value={user.password}
               />
@@ -180,7 +195,7 @@ export default function SignUp({theme}) {
             fullWidth
             variant="contained"
             style={{backgroundColor: '#F50057', color: '#FFFFFF'}}
-            className={classes.submit}
+            className={classes.submit} onClick={PostData}
           >
             Sign Up
           </Button>
@@ -197,5 +212,6 @@ export default function SignUp({theme}) {
         <Copyright />
       </Box>
     </Container>
+      </Fragment>
   );
 }
