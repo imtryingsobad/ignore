@@ -7,7 +7,7 @@ const Authenticate = async (req,res,next)=>{
         const token = req.cookies.jwt;
         const verifyToken = jwt.verify(token,process.env.SECRETKEY);
 
-        const rootUser = await User.findOne({_id: verifyToken.id, "tokens:token": token});
+        const rootUser = await User.findOne({_id: verifyToken.id, "tokens.token": token});
 
         if(!rootUser){throw new Error('User not found')}
 
@@ -17,7 +17,7 @@ const Authenticate = async (req,res,next)=>{
 
         next();
 
-    }catch{
+    }catch(err){
         res.status(401).send("Unauthorized: No token provided");
         console.log(err.message);
     }

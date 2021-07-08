@@ -1,27 +1,19 @@
 const express = require('express');
-const mongoose = require('mongoose')
-const dotenv = require('dotenv');
+require('dotenv').config();
 
 const app = express();
-
-
-
-dotenv.config({
-    path: './config.env'
-});
 require('./db/conn');
 
 app.use(express.json());
-
-// const User = require('./model/userSchema')
+app.use(require('morgan')('dev'))
 
 //Linking router files
-app.use(require('./router/auth'));
+app.use(require('./router/user'));
 
 const PORT = process.env.PORT;
 
 
 
-app.listen(PORT, () => {
+app.listen(PORT,()=>{
     console.log(`Server running at port ${PORT}`);
 })

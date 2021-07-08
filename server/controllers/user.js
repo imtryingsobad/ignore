@@ -1,24 +1,14 @@
-const express = require('express');
-const router = express.Router();
 const bcrypt = require('bcrypt');
-const authenticate = require('../middleware/authenticate');
-
-
-require('../db/conn');
 const User = require('../model/userSchema');
 
-router.get('/',async (req,res)=>{
-    res.send('Hello World from server!');
-});
-
-router.post('/register', async (req,res)=>{
+exports.register= async (req,res)=>{
 
     const {name,email,phone,work,password, cpassword}= req.body;
 
     if(!name||!email||!phone||!work||!password||!cpassword){
         return res.status(422).json({error:"One or more fields empty"});
-    }else if(password!==cpassword){
-        return res.status(422).json({error:"Passwords does not match"});
+    }else if(password!=cpassword){
+        return res.status(422).json({error:"Passwords no matching"});
     }else{
 
     try{
@@ -43,10 +33,8 @@ router.post('/register', async (req,res)=>{
         console.log(err)
     }}
 
-})
-
-
-router.post('/signin', async (req,res)=>{
+}
+exports.signIn =  async (req,res)=>{
     try{
         const {email,password} = req.body;
 
@@ -80,13 +68,9 @@ router.post('/signin', async (req,res)=>{
 
 
     }catch (err) {
-        console.log(err)
+        console.log(err.message)
     }
-})
-
-router.get('/about',authenticate,(req,res)=>{
-    res.send("About page");
-})
-
-
-module.exports = router;
+}
+exports.about=(req,res)=>{
+    res.send(req.rootUser);
+}
