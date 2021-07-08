@@ -1,16 +1,7 @@
-const express = require('express');
-const router = express.Router();
 const bcrypt = require('bcrypt');
-
-
-require('../db/conn');
 const User = require('../model/userSchema');
 
-router.get('/',async (req,res)=>{
-    res.send('Hello World from server!');
-});
-
-router.post('/register', async (req,res)=>{
+exports.register= async (req,res)=>{
 
     const {name,email,phone,work,password, cpassword}= req.body;
 
@@ -42,10 +33,8 @@ router.post('/register', async (req,res)=>{
         console.log(err)
     }}
 
-})
-
-
-router.post('/signin', async (req,res)=>{
+}
+exports.signIn =  async (req,res)=>{
     try{
         const {email,password} = req.body;
 
@@ -61,7 +50,7 @@ router.post('/signin', async (req,res)=>{
             const token = await userLogin.generateAuthToken();
 
 
-            res.cookie('jwt',token,{
+            res.cookie('jwtoken',token,{
                 expires: new Date(Date.now() + 25892000000),
                 httpOnly:true
             })
@@ -79,9 +68,10 @@ router.post('/signin', async (req,res)=>{
 
 
     }catch (err) {
-        console.log(err)
+        console.log(err.message)
     }
-})
-
-
-module.exports = router;
+}
+exports.about=(req,res)=>{
+    // res.json("Hello");
+    res.send(req.rootUser);
+}

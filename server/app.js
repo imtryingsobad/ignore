@@ -1,20 +1,18 @@
 const express = require('express');
-const mongoose = require('mongoose')
-const dotenv = require('dotenv');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+require('dotenv').config();
 
 const app = express();
-
-
-
-dotenv.config({path:'./config.env'});
 require('./db/conn');
 
 app.use(express.json());
-
-// const User = require('./model/userSchema')
+app.use(cors());
+app.use(cookieParser());
+app.use(require('morgan')('dev'))
 
 //Linking router files
-app.use(require('./router/auth'));
+app.use(require('./router/user'));
 
 const PORT = process.env.PORT;
 
