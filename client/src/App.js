@@ -37,12 +37,12 @@ function App() {
           <Sidebar isOpen={isOpen} toggle={toggle} />
           <Navbar toggle={toggle} />
           <Switch>
-              <Route exact path="/" ><Home/></Route>
-              <Route path="/about" ><AboutUs/></Route>
-              <Route path="/contact" ><Contact/></Route>
+              <Route exact path="/" ><Home theme={darkMode}/></Route>
+              <Route path="/about" ><AboutUs theme={darkMode}/></Route>
+              <Route path="/contact" ><Contact theme={darkMode}/></Route>
               <Route path="/login" ><Login theme={darkMode}/></Route>
               <Route path="/signup" ><SignUp theme={darkMode}/></Route>
-              <Route><ErrorPage/></Route>
+              <Route><ErrorPage theme={darkMode}/></Route>
           </Switch>
         <Button onClick ={()=> setDarkMode(!darkMode)}>
             <Brightness4Icon style={{position: 'fixed', bottom: '15px', right: '15px'}} />
