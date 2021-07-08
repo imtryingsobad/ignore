@@ -50,7 +50,7 @@ exports.signIn =  async (req,res)=>{
             const token = await userLogin.generateAuthToken();
 
 
-            res.cookie('jwt',token,{
+            res.cookie('jwtoken',token,{
                 expires: new Date(Date.now() + 25892000000),
                 httpOnly:true
             })
@@ -72,5 +72,6 @@ exports.signIn =  async (req,res)=>{
     }
 }
 exports.about=(req,res)=>{
+    // res.json("Hello");
     res.send(req.rootUser);
 }

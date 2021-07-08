@@ -4,9 +4,10 @@ import {useHistory} from 'react-router-dom';
 
 export const Login = () => {
 
-    const history = useHistory();
     const [email,setEmail]= useState('');
     const [password,setPassword]= useState('');
+    const history = useHistory();
+
 
 
     const loginUser= async (e)=>{
@@ -24,7 +25,7 @@ export const Login = () => {
 
         const data =await res.json();
 
-        if(data.status===400 || !data){
+        if(res.status===400 || !data){
             window.alert("Invalid Credentials");
             console.log("Invalid Credentials");
         }else{
