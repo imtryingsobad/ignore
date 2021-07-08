@@ -1,14 +1,19 @@
-// @flow
-import * as React from 'react';
+import  React from 'react';
 import {NavLink} from "react-router-dom";
+import  error404  from '../images/404.gif';
+import  error404white from '../images/404white.gif';
+import { Typography, Container} from '@material-ui/core';
 
-
-export const ErrorPage = () => {
+export const ErrorPage = ({}) => {
     return (
-        <div>
-            <h2>Error 404! Not found</h2>
+        <Container>
+        <center>
+            <img src={error404white} alt="error" /> 
+            <h5>
             <NavLink className="nav-link lead" to="/">Go to Home</NavLink>
-        </div>
+            </h5>
+        </center>
+        </Container>
     );
 };
 

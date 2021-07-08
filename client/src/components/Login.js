@@ -4,7 +4,9 @@ import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import {useHistory} from 'react-router-dom';
 import GIF from '../images/Login.gif';
+import swal from 'sweetalert';
 import GIFwhite from '../images/LoginWhite.gif';
+import '../App.css';
 
 function Copyright() {
   return (
@@ -65,10 +67,22 @@ const Login = ({theme}) => {
       const data =await res.json();
 
       if(res.status===400 || !data){
-          window.alert("Invalid Credentials");
+        swal({
+          title: "Oh No!",
+          text: "Invalid Credentials!",
+          icon: "error",
+          button: "close",
+          className : theme ? '.dark-modal' : '.light-modal',
+        });
           console.log("Invalid Credentials");
       }else{
-          window.alert("Successful Login");
+        swal({
+          className : theme ? '.dark-modal' : '.light-modal',
+          title: "Woah!",
+          text: "Successful Login!",
+          icon: "success",
+          button: "okay!",
+        });
           console.log("Successful Login");
           history.push('/');
       }

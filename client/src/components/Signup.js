@@ -5,6 +5,8 @@ import GIF from '../images/Login.gif';
 import GIFwhite from '../images/LoginWhite.gif';
 import { makeStyles } from '@material-ui/core/styles';
 import {useHistory} from 'react-router-dom';
+import swal from 'sweetalert';
+import '../App.css';
 
 function Copyright() {
   return (
@@ -88,10 +90,22 @@ export default function SignUp({theme}) {
         console.log(data);
 
         if(res.status===422 || !data){
-            window.alert("Invalid Registration");
+            swal({
+                title: "Oh No!",
+                text: "Invalid Credentials!",
+                icon: "error",
+                button: "close",
+                className : theme ? '.dark-modal' : '.light-modal',
+              });
             console.log("Invalid Registration");
         }else{
-            window.alert("Successful Registration");
+            swal({
+                className : theme ? '.dark-modal' : '.light-modal',
+                title: "Woah!",
+                text: "Successful Login!",
+                icon: "success",
+                button: "okay!",
+              });
             console.log("Successful Registration");
             history.push('/login');
         }

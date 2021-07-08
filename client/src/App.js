@@ -10,6 +10,7 @@ import ErrorPage from "./components/ErrorPage";
 import Sidebar from './components/Sidebar';
 import { ThemeProvider, Button, createTheme } from '@material-ui/core';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
+import './App.css';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);

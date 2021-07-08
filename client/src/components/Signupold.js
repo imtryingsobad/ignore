@@ -87,8 +87,6 @@ export const SignUp = () => {
                            <div>
                             <input type="submit" name='register' id="register" value="Register"/>
                         </div>
-
-
                     </form>
                 </div>
             </section>
