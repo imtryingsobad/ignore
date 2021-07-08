@@ -11,10 +11,10 @@ To install all the dependencies use:
 npm install
 
 To start the server, use:
-nodemon app
+nodemon app.js
 
 or
-node app
+node app.js
 
 For clients
 Go to ./client
