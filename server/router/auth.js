@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
+const authenticate = require('../middleware/authenticate');
 
 
 require('../db/conn');
@@ -16,8 +17,8 @@ router.post('/register', async (req,res)=>{
 
     if(!name||!email||!phone||!work||!password||!cpassword){
         return res.status(422).json({error:"One or more fields empty"});
-    }else if(password!=cpassword){
-        return res.status(422).json({error:"Passwords no matching"});
+    }else if(password!==cpassword){
+        return res.status(422).json({error:"Passwords does not match"});
     }else{
 
     try{
@@ -81,6 +82,10 @@ router.post('/signin', async (req,res)=>{
     }catch (err) {
         console.log(err)
     }
+})
+
+router.get('/about',authenticate,(req,res)=>{
+    res.send("About page");
 })
 
 
