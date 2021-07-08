@@ -102,22 +102,23 @@ export default function SignUp({darkMode}) {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>      
+
       {darkMode && <Avatar  variant="square" className={classes.avatar} src={ GIF} />}
       {!darkMode && <Avatar  variant="square" className={classes.avatar} src={ GIFwhite} />}
+
         <form className={classes.form} noValidate method="POST" onSubmit={PostData}  >
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
-                autoComplete="off"
-                name="Name"
+                name="name"
+                id="name"
+                label="Your Name"
+                value = {user.name}
                 variant="outlined"
                 required
                 fullWidth
-                id="Name"
-                label="Your Name"
-                autoFocus
+                autoComplete="off"
                 onChange={handleInputs}
-                value = {user.name}
               />
             </Grid>
             <Grid item xs={12} sm={6}>

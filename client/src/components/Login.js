@@ -61,16 +61,7 @@ const Login = ({darkMode}) => {
               email,password
           })
       });
-
-        if(res.status===400 || !data){
-            window.alert("Invalid Credentials");
-            console.log("Invalid Credentials");
-        }else{
-            window.alert("Successful Login");
-            console.log("Successful Login");
-            history.push('/');
-        }
-
+      
       const data =await res.json();
 
       if(res.status===400 || !data){
