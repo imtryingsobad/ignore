@@ -71,7 +71,7 @@ export default function SignUp({theme}) {
 
         const {name, email,  phone, work,password, cpassword} = user;
 
-        const res = await fetch("/register",{
+        const res = await fetch("/user/register",{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
